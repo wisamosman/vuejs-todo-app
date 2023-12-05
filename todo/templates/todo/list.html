@@ -12,9 +12,9 @@
 <body>
     <div class="container my-5" id="app">
         <div class="row">
-            <div class="col-lg-6 shadow p-4 mx-auto">
+            <div class="col-lg-8 shadow p-4 mx-auto">
                 <h3 class="d-inline-block"> todo app</h3>
-                <div class="d-inline ms-auto">
+                <div class="d-inline" style="margin-left: 60%;">
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         add todo
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="row mt-2">
-            <div class="col-lg-6 mx-auto p-4 shadow">
+            <div class="col-lg-8 mx-auto p-4 shadow">
                 <table class="table">
                     <thead>
                         <tr>
@@ -38,7 +38,17 @@
 
                             <td>${todo.title}</td>
                             <td>${todo.notes}</td>
-                            <td>${todo.done}</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditModal">
+                                    edit
+                                </button>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    delete
+                                </button>
+                            
+                                    
+
+                            </td>
                         </tr>
 
                     </tbody>
@@ -72,6 +82,39 @@
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">add</button>
+                            </div>
+                        </form>   
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">edit todo</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                              <label for="exampleInputEmail1" class="form-label">todo</label>
+                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                              
+                            </div>
+                            <div class="mb-3">
+                              <label for="exampleInputPassword1" class="form-label">notes</label>
+                              <textarea type="text" class="form-control" id="exampleInputPassword1"></textarea>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">done</label>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">save</button>
                             </div>
                         </form>   
                     </div>
