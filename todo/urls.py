@@ -9,6 +9,6 @@ router.register('',TodoViewset)
 
 urlpatterns = [
     path('', todo_list),
-    path('api/' , include(router.urls))
+    path('api/' , include(router.urls)),
 ]
 
