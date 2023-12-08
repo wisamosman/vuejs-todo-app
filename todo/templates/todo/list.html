@@ -38,7 +38,7 @@
                         <td>${todo.title}</td>
                         <td>${todo.notes}</td>
                         <td>
-                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditModal">
+                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" v-on:click="getTodoItem(todo.id)" data-bs-target="#EditModal">
                           edit
                           </button>
 
@@ -98,15 +98,15 @@
                   <form>
                       <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">todo</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="email" class="form-control" v-model="current_todo.title" id="exampleInputEmail1" aria-describedby="emailHelp">
                         
                       </div>
                       <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">notes</label>
-                        <textarea type="text" class="form-control" id="exampleInputPassword1"></textarea>
+                        <textarea type="text" class="form-control" v-model="current_todo.notes" id="exampleInputPassword1"></textarea>
                       </div>
                       <div class="mb-3 form-check">
-                          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                          <input type="checkbox" class="form-check-input" v-model="current_todo.done" id="exampleCheck1">
                           <label class="form-check-label" for="exampleCheck1">done</label>
                         </div>
                         <div class="modal-footer">
@@ -137,7 +137,8 @@
                   title:null,
                   notes:null,
                   done:null
-                }
+                },
+                current_todo:{}
             },
             mounted() {
                 this.get_todo();
@@ -161,6 +162,15 @@
                   })
 
                 },
+                
+                getTodoItem:function(id){
+                  axios.get('/todo/api/' + id)
+                  .then((response)=>{
+                    this.current_todo = response.data
+                  })
+                },
+
+
             },
         })
     </script>
