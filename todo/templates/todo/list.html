@@ -95,15 +95,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                  <form>
+                  <form v-on:submit.prevent="ubdateTodo()">
                       <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">todo</label>
-                        <input type="email" class="form-control" v-model="current_todo.title" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="text" class="form-control" v-model="current_todo.title" id="exampleInputEmail1" aria-describedby="emailHelp">
                         
                       </div>
                       <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">notes</label>
-                        <textarea type="text" class="form-control" v-model="current_todo.notes" id="exampleInputPassword1"></textarea>
+                        <textarea  class="form-control" v-model="current_todo.notes" id="exampleInputPassword1"></textarea>
                       </div>
                       <div class="mb-3 form-check">
                           <input type="checkbox" class="form-check-input" v-model="current_todo.done" id="exampleCheck1">
@@ -168,6 +168,14 @@
                   .then((response)=>{
                     this.current_todo = response.data
                   })
+                },
+
+                ubdateTodo:function(){
+                  axios.put(`/todo/api/${this.current_todo.id}/` , this.current_todo)
+                  .then((response)=>{
+                    this.get_todo();
+                })
+
                 },
 
 
