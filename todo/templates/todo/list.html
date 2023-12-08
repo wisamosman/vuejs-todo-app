@@ -42,7 +42,7 @@
                           edit
                           </button>
 
-                          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                          <button type="button" class="btn btn-danger" v-on:click="deleteTodo(todo.id)">
                             delete
                           </button>
                       
@@ -153,6 +153,13 @@
                   .then((response)=>{
                     this.get_todo()
                   })
+                },
+                deleteTodo:function(id){
+                  axios.delete('/todo/api/' + id)
+                  .then((response)=>{
+                    this.get_todo()
+                  })
+
                 },
             },
         })
